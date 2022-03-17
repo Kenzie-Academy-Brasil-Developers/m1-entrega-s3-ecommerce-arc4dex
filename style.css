@@ -1,0 +1,437 @@
+body{
+    margin:0;
+}
+
+#containerHeader{
+    height: 70px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#boxLogo{
+    margin-left: 120px;
+}
+
+#boxProdutos{
+    margin-right: 105px;
+}
+
+#logoMarca{
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 30px;
+    color: black;
+}
+
+#barraNav{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    margin: 15px;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 16px;
+    color: #828282;
+}
+
+#todosProdutosNav{
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    margin: 15px;
+    font-style: normal;
+    text-decoration: none;
+    font-size: 16px;
+    color: #333333;
+    cursor: pointer;
+}
+
+#todosProdutosNav:hover{
+    color: #6B54DE;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+#barraNav:hover{
+    color: #6B54DE;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+main{
+    display: flex;
+}
+
+#secaoPrincipal{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 120px;
+    justify-content: space-between;
+}
+
+#cardProduto{
+    width: 300px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    border: 2px solid #f5f5f5;
+    box-sizing: border-box;
+    margin-top: 20px;
+    position: relative;
+    cursor: pointer;
+    
+}
+
+#cardProduto:hover{
+    -webkit-animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: shadow-drop-2-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+ @-webkit-keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+  @keyframes shadow-drop-2-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px);
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+  
+
+/* #cardProduto:after,
+#cardProduto:before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+#cardProduto:before{
+    border-left: 2px solid #6B54DE;
+    border-right: 2px solid #6B54DE;
+    border-top: 2px solid #6B54DE;
+    border-bottom: 2px solid #6B54DE;
+    transform: scaleY(0);
+}
+
+#cardProduto:after{
+    border-left: 2px solid #6B54DE;
+    border-right: 2px solid #6B54DE;
+    border-top: 2px solid #6B54DE;
+    border-bottom: 2px solid #6B54DE;
+    transform: scaleX(0);
+}
+
+#cardProduto:hover:before{
+    transform: scaleY(1);
+}
+
+#cardProduto:hover:after{
+    transform: scaleX(1);
+} */
+
+#containerImagem{
+    height: 160px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-around;
+}
+
+#botaoCategoriaProduto{
+    width: 70px;
+    height: 25px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: #2E245E;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}
+
+#containerInformacaoProduto{
+    margin-left: 8px;
+    margin-right: 5px;
+    font-family: 'Inter', sans-serif;
+}
+
+#tituloProduto{
+    font-size: 18px;
+    font-weight: 700;
+    color: #333333;
+}
+#descricaoBreve{
+    font-size: 12px;
+    color: #828282;
+}
+
+#valorProduto{
+    font-size: 12px;
+    font-weight: 600;
+    color: #2E245E;
+}
+
+#textoAdicionarCarrinho{
+    font-size: 14px;
+    font-weight: 500;
+    color: #828282;
+}
+
+#conteudoLateral{
+    display: flex;
+    flex-direction: column;
+    margin-right: 70px;
+}
+
+#containerBarraLateral{
+    width: 350px;
+    height: 340px;
+    margin-top: 25px;
+    margin-right: 40px;
+    margin-left: 20px;
+}
+
+#containerPesquisar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#pesquisar{
+    width: 245px;
+    height: 50px;
+    background-color: #f5f5f5;
+    border: 1px solid #F5F5F5;
+    box-sizing: border-box;
+}
+
+#botaoPesquisar{
+    width: 95px;
+    height: 50px;
+    background-color: #6B54DE;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+}
+
+#carrinhoCompras{
+    width: 350px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:#6B54DE;
+    border: 1px solid #6B54DE;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+#boxCarrinho{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 340px;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+.cardProdutosNoCarrinho{
+    width: 350px;
+    height: 80px;
+    font-family: 'Inter', sans-serif;
+}
+
+#imagemProdutoCarrinho{
+    width: 80px;
+}
+
+#tituloProdutoCarrinho{
+    font-size: 18px;
+    font-weight: 700;
+    color: #333333;
+}
+
+.carrinhoVazio{
+   font-family: 'Inter', sans-serif;
+   font-size: 22px;
+   font-weight: 700;
+   color: #333333;
+   margin: 0; 
+}
+
+.AdicioneItens{
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #828282;
+    margin: 2px;
+}
+
+#containerResumoPedido{
+    width: 350px;
+    height: 130px;
+    margin-top: 2px;
+    background-color: #333333;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+#unidade{
+    width: 50px;
+    margin-top: 5px;
+    margin-left: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+#itensCompra{
+    width: 180px;
+    height: 120px;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+}
+
+#Total{
+    width: 100px;
+    margin-top: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+.textoItens{
+    font-weight: 400;
+    font-size: 12px;
+    color: #f5f5f5;
+}
+
+#boxValorTotal{
+    width: 350px;
+    height: 40px;
+    margin-top: 1px;
+    background-color: #333333;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#textoValorTotal{
+    margin-left: 10px;
+}
+
+#valorTotal{
+    width: 100px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#botaoFinalizarCompra{
+    width: 350px;
+    height: 50px;
+    margin-top: 2px;
+    -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+    background-color: transparent;
+    border: 1px solid #e74c3c;
+    border-radius: 0.6em;
+    color: #e74c3c;
+    cursor: pointer;
+    background-color: black;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+#botaoFinalizarCompra:hover, #botaoFinalizarCompra:focus {
+    color: #fff;
+    outline: 0;
+  }
+
+#botaoFinalizarCompra {
+    border-color: #6B54DE;
+    border-radius: 0;
+    color: #6B54DE;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: color 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+}
+
+#botaoFinalizarCompra:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: #6B54DE;
+    z-index: -1;
+    -webkit-transition: width 150ms ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+#botaoFinalizarCompra:hover {
+    color: #fff;
+}
+
+#botaoFinalizarCompra:hover:after {
+    width: 110%;
+}
+
+
