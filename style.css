@@ -16,6 +16,8 @@ body{
 
 #boxProdutos{
     margin-right: 105px;
+    display: flex;
+    flex-direction: row;
 }
 
 #logoMarca{
@@ -34,6 +36,9 @@ body{
     text-decoration: none;
     font-size: 16px;
     color: #828282;
+    list-style-type: none;
+    cursor: pointer;
+    transition: 0.5s;
 }
 
 #todosProdutosNav{
@@ -45,9 +50,13 @@ body{
     font-size: 16px;
     color: #333333;
     cursor: pointer;
+    list-style-type: none;
+    transition: 0.5s;
 }
 
 #todosProdutosNav:hover{
+    display: flex;
+    flex-direction: row;
     color: #6B54DE;
     font-size: 20px;
     transition: 0.5s;
@@ -67,6 +76,7 @@ main{
     display: flex;
     flex-wrap: wrap;
     margin-left: 120px;
+    margin-bottom: 50px;
     justify-content: space-between;
 }
 
@@ -92,67 +102,31 @@ main{
     0% {
       -webkit-transform: translateZ(0);
               transform: translateZ(0);
-      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      -webkit-box-shadow: 0 0 0 0 rgba(60, 20, 60, 50);
+              box-shadow: 0 0 0 0 rgba(60, 20, 60, 50);
     }
     100% {
       -webkit-transform: translateZ(50px);
               transform: translateZ(50px);
-      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+      -webkit-box-shadow: 0 0 20px 0px rgba(60, 20, 60, 0.35);
+              box-shadow: 0 0 20px 0px rgba(60, 20, 60, 0.35);
     }
   }
   @keyframes shadow-drop-2-center {
     0% {
       -webkit-transform: translateZ(0);
               transform: translateZ(0);
-      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      -webkit-box-shadow: 0 0 0 0 rgba(60, 20, 60, 50);
+              box-shadow: 0 0 0 0 rgba(60, 20, 60, 50);
     }
     100% {
       -webkit-transform: translateZ(50px);
               transform: translateZ(50px);
-      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+      -webkit-box-shadow: 0 0 20px 0px rgba(60, 20, 60, 0.35);
+              box-shadow: 0 0 20px 0px rgba(60, 20, 60, 0.35);
     }
   }
   
-
-/* #cardProduto:after,
-#cardProduto:before{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    transition: transform 0.5s ease-in-out;
-}
-
-#cardProduto:before{
-    border-left: 2px solid #6B54DE;
-    border-right: 2px solid #6B54DE;
-    border-top: 2px solid #6B54DE;
-    border-bottom: 2px solid #6B54DE;
-    transform: scaleY(0);
-}
-
-#cardProduto:after{
-    border-left: 2px solid #6B54DE;
-    border-right: 2px solid #6B54DE;
-    border-top: 2px solid #6B54DE;
-    border-bottom: 2px solid #6B54DE;
-    transform: scaleX(0);
-}
-
-#cardProduto:hover:before{
-    transform: scaleY(1);
-}
-
-#cardProduto:hover:after{
-    transform: scaleX(1);
-} */
-
 #containerImagem{
     height: 160px;
     background-color: #f5f5f5;
@@ -160,9 +134,9 @@ main{
     justify-content: space-around;
 }
 
-#botaoCategoriaProduto{
+.categoriaProduto{
     width: 70px;
-    height: 25px;
+    height: 20px;
     margin-top: 25px;
     display: flex;
     flex-direction: row;
@@ -198,10 +172,22 @@ main{
     color: #2E245E;
 }
 
-#textoAdicionarCarrinho{
+.botaoAdicionarCarrinho{
     font-size: 14px;
     font-weight: 500;
     color: #828282;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.botaoAdicionarCarrinho:hover{
+    font-size: 16px;
+    color: #333333;
+    transition: 0.5s;
 }
 
 #conteudoLateral{
