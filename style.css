@@ -28,7 +28,7 @@ body{
     color: black;
 }
 
-#barraNav{
+.barraNav{
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     margin: 15px;
@@ -41,7 +41,7 @@ body{
     transition: 0.5s;
 }
 
-#todosProdutosNav{
+.todosProdutosNav{
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     margin: 15px;
@@ -54,7 +54,7 @@ body{
     transition: 0.5s;
 }
 
-#todosProdutosNav:hover{
+.todosProdutosNav:hover{
     display: flex;
     flex-direction: row;
     color: #6B54DE;
@@ -62,7 +62,7 @@ body{
     transition: 0.5s;
 }
 
-#barraNav:hover{
+.barraNav:hover{
     color: #6B54DE;
     font-size: 18px;
     transition: 0.5s;
@@ -70,6 +70,7 @@ body{
 
 main{
     display: flex;
+    justify-content: space-between;
 }
 
 #secaoPrincipal{
@@ -89,6 +90,7 @@ main{
     border: 2px solid #f5f5f5;
     box-sizing: border-box;
     margin-top: 20px;
+    margin-left: 5px;
     position: relative;
     cursor: pointer;
     
@@ -166,7 +168,11 @@ main{
     color: #828282;
 }
 
-#valorProduto{
+#containerPreco{
+    display: flex;
+}
+
+.valorProduto, .cifrao{
     font-size: 12px;
     font-weight: 600;
     color: #2E245E;
@@ -301,6 +307,11 @@ main{
     overflow-y: auto;
 }
 
+#listaProdutos{
+    display: flex;
+    height: 50px;
+}
+
 #unidade{
     width: 50px;
     margin-top: 5px;
@@ -348,6 +359,11 @@ main{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+#containerValorTotal{
+    display: flex;
+    margin-right: 8px;
 }
 
 #textoValorTotal{
