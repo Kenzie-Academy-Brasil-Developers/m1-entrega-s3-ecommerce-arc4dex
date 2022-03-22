@@ -69,6 +69,7 @@ const bancoDadosProdutos = [
 
 const secaoPrincipal = document.getElementById('secaoPrincipal');
 const barraNav = document.getElementById('boxProdutos');
+const boxCarrinhoCompras = document.getElementById('boxCarrinho');
 
 montarVitrine(bancoDadosProdutos);
 
@@ -93,7 +94,7 @@ barraNav.addEventListener('click', function(event){
             produtosFiltrados('Jaqueta');
         break; 
     }
-})
+});
 
 function criarCard(produto){
 
@@ -147,12 +148,91 @@ function criarCard(produto){
     containerPreco.appendChild(valorProduto);
 
     let botaoAdicionarCarrinho = document.createElement('button');
-    botaoAdicionarCarrinho.classList = 'botaoAdicionarCarrinho'
-    botaoAdicionarCarrinho.innerText = 'Adicionar ao carrinho'
+    botaoAdicionarCarrinho.classList = 'botaoAdicionarCarrinho';
+    botaoAdicionarCarrinho.innerText = 'Adicionar ao carrinho';
     containerinformacaoProduto.appendChild(botaoAdicionarCarrinho);
 
     secaoPrincipal.appendChild(cardProduto);
 
+    botaoAdicionarCarrinho.addEventListener('click', function(event){
+        let boxTextosCarrinhoVazio = document.getElementById('boxTextosCarrinhoVazio')
+
+        boxTextosCarrinhoVazio.innerHTML = "";
+        boxTextosCarrinhoVazio.style.height = '0px';
+
+        const clicouEnviarCarrinho = event.target.classList;
+        criarMiniCard(produto);
+    })
+}
+
+function criarMiniCard(produto){
+    const {imagem, alt, nome, preco} = produto;
+
+    let containerMiniCardProduto = document.createElement('div');
+    containerMiniCardProduto.classList = 'containerMiniCardProduto';
+    boxCarrinho.appendChild(containerMiniCardProduto);
+
+    let containerImagemMiniCard = document.createElement('div');
+    containerImagemMiniCard.classList = 'containerImagemMiniCard';
+    containerMiniCardProduto.appendChild(containerImagemMiniCard);
+
+    let imagemMiniCard = document.createElement('img');
+    imagemMiniCard.src = imagem;
+    imagemMiniCard.alt = alt;
+    imagemMiniCard.classList = 'imagemCarrinho';
+    containerImagemMiniCard.appendChild(imagemMiniCard);
+
+    let containerInformarcaoMiniCardProduto = document.createElement('div');
+    containerInformarcaoMiniCardProduto.classList = 'containerInformarcaoMiniCardProduto';
+    containerMiniCardProduto.appendChild(containerInformarcaoMiniCardProduto);
+
+    let tituloProdutoMiniCard = document.createElement('p');
+    tituloProdutoMiniCard.classList = 'tituloProdutoMiniCard'
+    tituloProdutoMiniCard.innerText = nome;
+    containerInformarcaoMiniCardProduto.appendChild(tituloProdutoMiniCard);
+
+    let containerValorMiniCard = document.createElement('div');
+    containerValorMiniCard.id = 'containerValorMiniCard'
+    containerInformarcaoMiniCardProduto.appendChild(containerValorMiniCard);
+
+    let cifraoMiniCard = document.createElement('p');
+    cifraoMiniCard.classList = 'cifraoMiniCard';
+    cifraoMiniCard.innerText = 'R$';
+    containerValorMiniCard.appendChild(cifraoMiniCard);
+
+    let valorMiniCard = document.createElement('p');
+    valorMiniCard.classList = 'valorMiniCard';
+    valorMiniCard.innerText = preco;
+    containerValorMiniCard.appendChild(valorMiniCard);
+
+    let removerProduto = document.createElement('button');
+    removerProduto.classList = 'removerProduto';
+    removerProduto.innerText = 'Remover produto';
+    containerInformarcaoMiniCardProduto.appendChild(removerProduto);
+
+    /* let boxValorTotal = document.createElement('div');
+    boxValorTotal.id = 'boxValorTotal';
+    boxCarrinho.appendChild(boxValorTotal);
+
+    let textoValorTotal = document.createElement('div');
+    textoValorTotal.id = 'textoValorTotal';
+    boxValorTotal.appendChild(textoValorTotal);
+
+    let textoQuantidade = document.createElement('p');
+    textoQuantidade.innerText = 'Quantidade';
+    textoValorTotal.appendChild(textoQuantidade);
+
+    let textoTotal = document.createElement('p');
+    textoTotal.id = 'quantidadeProdutos';
+    textoTotal.innerText = 'Total';
+    textoValorTotal.appendChild(textoTotal);
+
+    let containerValorTotal = document.createElement('div');
+    containerValorTotal.id = 'containerValorTotal';
+    boxValorTotal.appendChild(containerValorTotal);
+
+    let textoValores = document.createElement('p');
+    textoValores.classList = 'textoValores'; */
 }
 
 function montarVitrine(arrProdutos){
@@ -164,9 +244,18 @@ function montarVitrine(arrProdutos){
 function produtosFiltrados(categoriaProduto){
     const bancoDadosFiltrados = bancoDadosProdutos.filter(e => e.categoria === categoriaProduto);   
     montarVitrine(bancoDadosFiltrados);
+    enviarProdutoCarrinho(bancoDadosFiltrados);
 }
 
+function enviarProdutoCarrinho(arrProdutos){
+    arrProdutos.forEach((produto) => {
+        criarMiniCard(produto)
+    });
+}
 
+//botaoAddCarrinho.addEventListener('click', function(){
+
+//});
 
 
 
