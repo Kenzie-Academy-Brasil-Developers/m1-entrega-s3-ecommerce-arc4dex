@@ -63,13 +63,16 @@ const bancoDadosProdutos = [
         alt: 'Jaqueta preta báscia',
         cifrao: 'R$',
         preco: '100,00',
-
     }
 ];
+
+const bancoDadosCarrinho = [];
 
 const secaoPrincipal = document.getElementById('secaoPrincipal');
 const barraNav = document.getElementById('boxProdutos');
 const boxCarrinhoCompras = document.getElementById('boxCarrinho');
+const botaoPesquisar = document.getElementById('botaoPesquisar');
+const inputPesquisar = document.getElementById('pesquisar');
 
 montarVitrine(bancoDadosProdutos);
 
@@ -153,16 +156,6 @@ function criarCard(produto){
     containerinformacaoProduto.appendChild(botaoAdicionarCarrinho);
 
     secaoPrincipal.appendChild(cardProduto);
-
-    botaoAdicionarCarrinho.addEventListener('click', function(event){
-        let boxTextosCarrinhoVazio = document.getElementById('boxTextosCarrinhoVazio')
-
-        boxTextosCarrinhoVazio.innerHTML = "";
-        boxTextosCarrinhoVazio.style.height = '0px';
-
-        const clicouEnviarCarrinho = event.target.classList;
-        criarMiniCard(produto);
-    })
 }
 
 function criarMiniCard(produto){
@@ -210,29 +203,10 @@ function criarMiniCard(produto){
     removerProduto.innerText = 'Remover produto';
     containerInformarcaoMiniCardProduto.appendChild(removerProduto);
 
-    /* let boxValorTotal = document.createElement('div');
-    boxValorTotal.id = 'boxValorTotal';
-    boxCarrinho.appendChild(boxValorTotal);
-
-    let textoValorTotal = document.createElement('div');
-    textoValorTotal.id = 'textoValorTotal';
-    boxValorTotal.appendChild(textoValorTotal);
-
-    let textoQuantidade = document.createElement('p');
-    textoQuantidade.innerText = 'Quantidade';
-    textoValorTotal.appendChild(textoQuantidade);
-
-    let textoTotal = document.createElement('p');
-    textoTotal.id = 'quantidadeProdutos';
-    textoTotal.innerText = 'Total';
-    textoValorTotal.appendChild(textoTotal);
-
-    let containerValorTotal = document.createElement('div');
-    containerValorTotal.id = 'containerValorTotal';
-    boxValorTotal.appendChild(containerValorTotal);
-
-    let textoValores = document.createElement('p');
-    textoValores.classList = 'textoValores'; */
+    removerProduto.addEventListener('click', function(event){
+        const clicouRemover = event.target.classList
+    })
+    
 }
 
 function montarVitrine(arrProdutos){
@@ -244,8 +218,21 @@ function montarVitrine(arrProdutos){
 function produtosFiltrados(categoriaProduto){
     const bancoDadosFiltrados = bancoDadosProdutos.filter(e => e.categoria === categoriaProduto);   
     montarVitrine(bancoDadosFiltrados);
-    enviarProdutoCarrinho(bancoDadosFiltrados);
+    /*enviarProdutoCarrinho(bancoDadosFiltrados);*/
 }
+
+secaoPrincipal.addEventListener('click', function(event){
+
+    let boxTextosCarrinhoVazio = document.getElementById('boxTextosCarrinhoVazio');
+    
+    boxTextosCarrinhoVazio.innerHTML = "";
+    boxTextosCarrinhoVazio.style.height = '0px';
+
+    const clicouEnviarCarrinho = event.target.classList
+    if(clicouEnviarCarrinho[0] === 'botaoAdicionarCarrinho'){
+        
+    } 
+})
 
 function enviarProdutoCarrinho(arrProdutos){
     arrProdutos.forEach((produto) => {
@@ -253,10 +240,66 @@ function enviarProdutoCarrinho(arrProdutos){
     });
 }
 
-//botaoAddCarrinho.addEventListener('click', function(){
+botaoPesquisar.addEventListener('click', buscarConteudo);
 
-//});
+function buscarConteudo(event){
+    let pesquisaCapturada = inputPesquisar.value.toLowerCase()
 
+    let bancoDadosPesquisar = bancoDadosProdutos.filter(e => e.nome.toLowerCase().split(' ') === pesquisaCapturada || e.categoria.toLowerCase().split(' ') === pesquisaCapturada);
 
+    secaoPrincipal.innerHTML = "";
+    montarVitrine(bancoDadosPesquisar);
 
+    console.log(bancoDadosPesquisar)
+}
 
+/*const containerBarraLateral = document.getElementById('containerBarraLateral');
+        let boxValorTotal = document.createElement('div');
+        boxValorTotal.id = 'boxValorTotal';
+        containerBarraLateral.appendChild(boxValorTotal);
+
+        let textoValorTotal = document.createElement('div');
+        textoValorTotal.id = 'textoValorTotal';
+        boxValorTotal.appendChild(textoValorTotal);
+
+        let textoQuantidade = document.createElement('p');
+        textoQuantidade.innerText = 'Quantidade';
+        textoValorTotal.appendChild(textoQuantidade);
+
+        let textoTotal = document.createElement('p');
+        textoTotal.id = 'quantidadeProdutos';
+        textoTotal.innerText = 'Total';
+        textoValorTotal.appendChild(textoTotal);
+
+        let containerValorTotal = document.createElement('div');
+        containerValorTotal.id = 'containerValorTotal';
+        boxValorTotal.appendChild(containerValorTotal);
+
+        let quantidade0 = document.createElement('p');
+        quantidade0.classList = 'textoValores';
+        quantidade0.innerText = '0'
+        containerValorTotal.appendChild(quantidade0);
+
+        let containerPreco = document.createElement('div');
+        containerPreco.id = 'containerPreco';
+        containerValorTotal.appendChild(containerPreco);
+
+        let textoCifrao = document.createElement('p');
+        textoCifrao.classList = 'textoValores';
+        textoCifrao.innerText = 'R$';
+        containerPreco.appendChild(textoCifrao)
+
+        let textoValor = document.createElement('p');
+        textoValor.classList = 'textoValores';
+        textoValor.innerText = '0,00';
+        containerPreco.appendChild(textoValor);
+
+        let finalizarCompra = document.createElement('div');
+        finalizarCompra.id = 'finalizarCompra';
+        containerBarraLateral.appendChild(finalizarCompra);
+
+        let botaoFinalizarCompra = document.createElement('button');
+        botaoFinalizarCompra.id = 'botaoFinalizarCompra';
+        botaoFinalizarCompra.type = 'submit';
+        botaoFinalizarCompra.innerText = 'Finalizar Compra';
+        finalizarCompra.appendChild(botaoFinalizarCompra)*/
