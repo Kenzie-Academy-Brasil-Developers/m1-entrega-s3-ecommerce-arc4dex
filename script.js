@@ -1,7 +1,7 @@
 const bancoDadosProdutos = [
     {
         id: 1,
-        categoria: 'Jaqueta',
+        categoria: 'Jaquetas',
         nome: 'Lightweight Jacket',
         descricao: 'Adicione um pouco de energia ao seu guarda-roupa de inverno com esta jaqueta vibrante...',
         imagem: 'img/LightweightJacket.png',
@@ -56,7 +56,7 @@ const bancoDadosProdutos = [
 
     {
         id: 6,
-        categoria: 'Jaqueta',
+        categoria: 'Jaquetas',
         nome: 'Champion Packable Jacket',
         descricao: 'Proteja-se dos elementos com esta jaqueta embalável Champion. Esta jaqueta de poliést...',
         imagem: '/img/ChampionPackableJacket.png',
@@ -67,12 +67,15 @@ const bancoDadosProdutos = [
 ];
 
 const bancoDadosCarrinho = [];
+let valorTotalProdutos = 0;
 
 const secaoPrincipal = document.getElementById('secaoPrincipal');
 const barraNav = document.getElementById('boxProdutos');
 const boxCarrinhoCompras = document.getElementById('boxCarrinho');
 const botaoPesquisar = document.getElementById('botaoPesquisar');
 const inputPesquisar = document.getElementById('pesquisar');
+const boxTextosCarrinhoVazio = document.getElementById('boxTextoCarrinho');
+const conteudoLateral = document.getElementById('conteudoLateral');
 
 montarVitrine(bancoDadosProdutos);
 
@@ -94,7 +97,7 @@ barraNav.addEventListener('click', function(event){
         break;
         case 'produtoJaqueta':
             secaoPrincipal.innerHTML = "";
-            produtosFiltrados('Jaqueta');
+            produtosFiltrados('Jaquetas');
         break; 
     }
 });
@@ -203,10 +206,6 @@ function criarMiniCard(produto){
     removerProduto.innerText = 'Remover produto';
     containerInformarcaoMiniCardProduto.appendChild(removerProduto);
 
-    removerProduto.addEventListener('click', function(event){
-        const clicouRemover = event.target.classList
-    })
-    
 }
 
 function montarVitrine(arrProdutos){
@@ -223,83 +222,140 @@ function produtosFiltrados(categoriaProduto){
 
 secaoPrincipal.addEventListener('click', function(event){
 
-    let boxTextosCarrinhoVazio = document.getElementById('boxTextosCarrinhoVazio');
-    
-    boxTextosCarrinhoVazio.innerHTML = "";
-    boxTextosCarrinhoVazio.style.height = '0px';
-
     const clicouEnviarCarrinho = event.target.classList
+    
+    let capturaNome = event.target.parentElement.childNodes[1].innerText
+
     if(clicouEnviarCarrinho[0] === 'botaoAdicionarCarrinho'){
-        
+        bancoDadosCarrinho.push(capturaNome)
+        enviarProdutoCarrinho(capturaNome)
+        resumoCompra()
     } 
 })
 
-function enviarProdutoCarrinho(arrProdutos){
-    arrProdutos.forEach((produto) => {
-        criarMiniCard(produto)
-    });
-}
-
 botaoPesquisar.addEventListener('click', buscarConteudo);
 
-function buscarConteudo(event){
-    let pesquisaCapturada = inputPesquisar.value.toLowerCase()
+function buscarConteudo(){
+    let pesquisaCapturada = inputPesquisar.value.toLowerCase().trim()
 
-    let bancoDadosPesquisar = bancoDadosProdutos.filter(e => e.nome.toLowerCase().split(' ') === pesquisaCapturada || e.categoria.toLowerCase().split(' ') === pesquisaCapturada);
+    if(pesquisaCapturada.length > 0) {
+        let bancoDadosPesquisar = bancoDadosProdutos.filter(e => e.nome.toLowerCase().includes(pesquisaCapturada) || e.categoria.toLowerCase().includes(pesquisaCapturada));
 
-    secaoPrincipal.innerHTML = "";
-    montarVitrine(bancoDadosPesquisar);
-
-    console.log(bancoDadosPesquisar)
+        secaoPrincipal.innerHTML = "";
+        montarVitrine(bancoDadosPesquisar);
+    }  
 }
 
-/*const containerBarraLateral = document.getElementById('containerBarraLateral');
+function enviarProdutoCarrinho(capturaNome){
+    for(let i = 0; i < bancoDadosProdutos.length; i++){
+        if(bancoDadosProdutos[i].nome === capturaNome){
+            if(bancoDadosCarrinho.length > 0){
+                boxTextosCarrinhoVazio.classList.add('apagar')
+                criarMiniCard(bancoDadosProdutos[i]);
+                valorTotalProdutos += parseInt(bancoDadosProdutos[i].preco);
+            } else {
+                boxTextosCarrinhoVazio.classList.remove('apagar')
+                criarMiniCard(bancoDadosProdutos[i]);
+                valorTotalProdutos += parseInt(bancoDadosProdutos[i].preco);
+            }
+        }
+    }    
+}
+
+function resumoCompra(){
+
+    if(bancoDadosCarrinho.length === 1){
+        const containerBarraLateral = document.getElementById('containerBarraLateral');
+    
         let boxValorTotal = document.createElement('div');
         boxValorTotal.id = 'boxValorTotal';
         containerBarraLateral.appendChild(boxValorTotal);
-
+    
         let textoValorTotal = document.createElement('div');
         textoValorTotal.id = 'textoValorTotal';
         boxValorTotal.appendChild(textoValorTotal);
-
+    
         let textoQuantidade = document.createElement('p');
         textoQuantidade.innerText = 'Quantidade';
         textoValorTotal.appendChild(textoQuantidade);
-
+    
         let textoTotal = document.createElement('p');
         textoTotal.id = 'quantidadeProdutos';
         textoTotal.innerText = 'Total';
         textoValorTotal.appendChild(textoTotal);
-
+    
         let containerValorTotal = document.createElement('div');
         containerValorTotal.id = 'containerValorTotal';
         boxValorTotal.appendChild(containerValorTotal);
-
+    
         let quantidade0 = document.createElement('p');
-        quantidade0.classList = 'textoValores';
-        quantidade0.innerText = '0'
+        quantidade0.classList.add('textoValores');
+        quantidade0.classList.add('quantidadeProdutoResumo')
+        quantidade0.innerText = bancoDadosCarrinho.length
         containerValorTotal.appendChild(quantidade0);
-
+    
         let containerPreco = document.createElement('div');
-        containerPreco.id = 'containerPreco';
+        containerPreco.id = 'containerPrecoProduto';
         containerValorTotal.appendChild(containerPreco);
-
-        let textoCifrao = document.createElement('p');
-        textoCifrao.classList = 'textoValores';
-        textoCifrao.innerText = 'R$';
-        containerPreco.appendChild(textoCifrao)
-
+    
         let textoValor = document.createElement('p');
-        textoValor.classList = 'textoValores';
+        textoValor.classList.add('textoValores');
+        textoValor.classList.add('valorDinheiro'); 
         textoValor.innerText = '0,00';
         containerPreco.appendChild(textoValor);
-
+    
         let finalizarCompra = document.createElement('div');
         finalizarCompra.id = 'finalizarCompra';
         containerBarraLateral.appendChild(finalizarCompra);
-
+    
         let botaoFinalizarCompra = document.createElement('button');
         botaoFinalizarCompra.id = 'botaoFinalizarCompra';
         botaoFinalizarCompra.type = 'submit';
         botaoFinalizarCompra.innerText = 'Finalizar Compra';
-        finalizarCompra.appendChild(botaoFinalizarCompra)*/
+        finalizarCompra.appendChild(botaoFinalizarCompra);
+
+    }
+    if(bancoDadosCarrinho.length >= 1) {
+        document.querySelector('#containerValorTotal p').innerText = bancoDadosCarrinho.length
+        document.querySelector('#containerPrecoProduto p').innerText = `R$ ${valorTotalProdutos}`
+    }
+
+}
+
+conteudoLateral.addEventListener('click', function(event){
+    
+    let arrTodosProdutosCarrinho = document.querySelectorAll('.containerMiniCardProduto')
+    
+    let clicouRemover = event.target.closest('.containerMiniCardProduto')
+
+    let posicaoProduto 
+    
+    arrTodosProdutosCarrinho.forEach((item, index) => {
+        if(item === clicouRemover){
+            posicaoProduto = index
+        }
+    })
+
+    bancoDadosCarrinho.forEach((item, index) => {
+       if(clicouRemover.children[1].children[0].innerText === item && index === posicaoProduto){
+            for(let i = 0; i < bancoDadosProdutos.length; i++){
+                if(bancoDadosProdutos[i].nome === item){
+                    valorTotalProdutos -= parseInt(bancoDadosProdutos[i].preco)
+                }
+            }
+            bancoDadosCarrinho.splice(index,1)
+       }
+    })
+
+    clicouRemover.remove()
+    document.querySelector('.quantidadeProdutoResumo').innerText = bancoDadosCarrinho.length
+    document.querySelector('.valorDinheiro').innerText = `R$ ${valorTotalProdutos}`
+
+    if(bancoDadosCarrinho.length === 0){
+        boxTextosCarrinhoVazio.classList.remove('apagar')
+        document.querySelector('#boxValorTotal').remove()
+        document.querySelector('#botaoFinalizarCompra').remove()
+    }
+
+})
+

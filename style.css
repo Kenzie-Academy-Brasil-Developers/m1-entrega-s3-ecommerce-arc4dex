@@ -260,7 +260,7 @@ main{
     overflow-y: auto;
 }
 
-#boxTextosCarrinhoVazio{
+.boxTextosCarrinhoVazio{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -452,4 +452,6 @@ main{
     width: 110%;
 }
 
-
+.apagar{
+    display:none;
+}
